@@ -6,17 +6,17 @@ class ArchDef;
 class RAM;
 
 class Processor {
-public:
-  Processor(const ArchDef& arch);
-  ~Processor();
+ public:
+    Processor(const ArchDef& arch);
+    ~Processor();
 
-  void attach_ram(RAM* mem);
+    void attach_ram(RAM* mem);
 
-  int run();
+    int run();
 
-private:
-  class Impl;
-  Impl* impl_;
+ private:
+    class Impl;
+    Impl* impl_;
 };
 
-}
+}  // namespace vortex

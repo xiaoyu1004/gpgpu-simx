@@ -14,16 +14,16 @@ typedef void* vx_device_h;
 typedef void* vx_buffer_h;
 
 // device caps ids
-#define VX_CAPS_VERSION           0x0 
-#define VX_CAPS_MAX_CORES         0x1
-#define VX_CAPS_MAX_WARPS         0x2
-#define VX_CAPS_MAX_THREADS       0x3
-#define VX_CAPS_CACHE_LINE_SIZE   0x4
-#define VX_CAPS_LOCAL_MEM_SIZE    0x5
-#define VX_CAPS_ALLOC_BASE_ADDR   0x6
-#define VX_CAPS_KERNEL_BASE_ADDR  0x7
+#define VX_CAPS_VERSION 0x0
+#define VX_CAPS_MAX_CORES 0x1
+#define VX_CAPS_MAX_WARPS 0x2
+#define VX_CAPS_MAX_THREADS 0x3
+#define VX_CAPS_CACHE_LINE_SIZE 0x4
+#define VX_CAPS_LOCAL_MEM_SIZE 0x5
+#define VX_CAPS_ALLOC_BASE_ADDR 0x6
+#define VX_CAPS_KERNEL_BASE_ADDR 0x7
 
-#define MAX_TIMEOUT               (60*60*1000)   // 1hr 
+#define MAX_TIMEOUT (60 * 60 * 1000)  // 1hr
 
 // open the device and connect to it
 int vx_dev_open(vx_device_h* hdevice);
@@ -32,7 +32,7 @@ int vx_dev_open(vx_device_h* hdevice);
 int vx_dev_close(vx_device_h hdevice);
 
 // return device configurations
-int vx_dev_caps(vx_device_h hdevice, uint32_t caps_id, uint64_t *value);
+int vx_dev_caps(vx_device_h hdevice, uint32_t caps_id, uint64_t* value);
 
 // Allocate shared buffer with device
 int vx_buf_alloc(vx_device_h hdevice, uint64_t size, vx_buffer_h* hbuffer);
@@ -40,7 +40,7 @@ int vx_buf_alloc(vx_device_h hdevice, uint64_t size, vx_buffer_h* hbuffer);
 // release buffer
 int vx_buf_free(vx_buffer_h hbuffer);
 
-// Get host pointer address  
+// Get host pointer address
 void* vx_host_ptr(vx_buffer_h hbuffer);
 
 // allocate device memory and return address
@@ -81,4 +81,4 @@ int vx_buf_release(vx_buffer_h hbuffer);
 }
 #endif
 
-#endif // __VX_DRIVER_H__
+#endif  // __VX_DRIVER_H__

@@ -1,15 +1,15 @@
 #pragma once
 
-#include <simobject.h>
 #include "types.h"
+#include <simobject.h>
 #include <vector>
 
 namespace vortex {
 
-class MemSim : public SimObject<MemSim>{
-public:
-    struct Config {        
-        uint32_t channels;      
+class MemSim : public SimObject<MemSim> {
+ public:
+    struct Config {
+        uint32_t channels;
         uint32_t num_cores;
     };
 
@@ -17,10 +17,7 @@ public:
         uint64_t reads;
         uint64_t writes;
 
-        PerfStats() 
-            : reads(0)
-            , writes(0)
-        {}
+        PerfStats() : reads(0), writes(0) {}
     };
 
     SimPort<MemReq> MemReqPort;
@@ -34,10 +31,10 @@ public:
     void tick();
 
     const PerfStats& perf_stats() const;
-    
-private:
+
+ private:
     class Impl;
     Impl* impl_;
 };
 
-};
+};  // namespace vortex

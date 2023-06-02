@@ -1,23 +1,21 @@
 #pragma once
 
-#include <cstdint>
 #include <assert.h>
+#include <cstdint>
 
 namespace vortex {
 
 class MemoryAllocator {
-public:
-    MemoryAllocator(
-        uint64_t minAddress,
-        uint64_t maxAddress,
-        uint32_t pageAlign, 
-        uint32_t blockAlign) 
-        : nextAddress_(minAddress)
-        , maxAddress_(maxAddress)
-        , pageAlign_(pageAlign)
-        , blockAlign_(blockAlign)
-        , pages_(nullptr)
-    {}
+ public:
+    MemoryAllocator(uint64_t minAddress,
+                    uint64_t maxAddress,
+                    uint32_t pageAlign,
+                    uint32_t blockAlign)
+        : nextAddress_(minAddress),
+          maxAddress_(maxAddress),
+          pageAlign_(pageAlign),
+          blockAlign_(blockAlign),
+          pages_(nullptr) {}
 
     ~MemoryAllocator() {
         // Free allocated pages
@@ -38,7 +36,7 @@ public:
 
         // Walk thru all pages to find a free block
         block_t* freeBlock = nullptr;
-        auto currPage = pages_;
+        auto currPage      = pages_;
         while (currPage) {
             auto currBlock = currPage->freeSList;
             if (currBlock) {
@@ -46,8 +44,7 @@ public:
                 // Quick check if the head block has enough space.
                 if (currBlock->size >= size) {
                     // Find the smallest matching block in the S-list
-                    while (currBlock->nextFreeS 
-                        && (currBlock->nextFreeS->size >= size)) {
+                    while (currBlock->nextFreeS && (currBlock->nextFreeS->size >= size)) {
                         currBlock = currBlock->nextFreeS;
                     }
                     // Return the free block
@@ -64,7 +61,7 @@ public:
             if (nullptr == currPage)
                 return -1;
             freeBlock = currPage->freeSList;
-        }   
+        }
 
         // Remove the block from the free lists
         assert(freeBlock->size >= size);
@@ -99,10 +96,9 @@ public:
     int release(uint64_t addr) {
         // Walk all pages to find the pointer
         block_t* usedBlock = nullptr;
-        auto currPage = pages_;
+        auto currPage      = pages_;
         while (currPage) {
-            if (addr >= currPage->addr
-            &&  addr < (currPage->addr + currPage->size)) {
+            if (addr >= currPage->addr && addr < (currPage->addr + currPage->size)) {
                 auto currBlock = currPage->usedList;
                 while (currBlock) {
                     if (currBlock->addr == addr) {
@@ -126,7 +122,7 @@ public:
         // Insert the block into the free M-list.
         currPage->InsertFreeMBlock(usedBlock);
 
-        // Check if we can merge adjacent free blocks from the left.        
+        // Check if we can merge adjacent free blocks from the left.
         if (usedBlock->prevFreeM) {
             // Calculate the previous address
             auto prevAddr = usedBlock->prevFreeM->addr + usedBlock->prevFreeM->size;
@@ -178,61 +174,55 @@ public:
             while (currPage && this->DeletePage(currPage)) {
                 currPage = this->NextEmptyPage();
             }
-
         }
 
         return 0;
     }
 
-private:
-
+ private:
     struct block_t {
         block_t* nextFreeS;
         block_t* prevFreeS;
-        
+
         block_t* nextFreeM;
         block_t* prevFreeM;
-        
+
         block_t* nextUsed;
         block_t* prevUsed;
 
         uint64_t addr;
         uint64_t size;
 
-        block_t(uint64_t addr, uint64_t size) 
-            : nextFreeS(nullptr)
-            , prevFreeS(nullptr)
-            , nextFreeM(nullptr)
-            , prevFreeM(nullptr)
-            , nextUsed(nullptr)
-            , prevUsed(nullptr)
-            , addr(addr)
-            , size(size)
-        {}
+        block_t(uint64_t addr, uint64_t size)
+            : nextFreeS(nullptr),
+              prevFreeS(nullptr),
+              nextFreeM(nullptr),
+              prevFreeM(nullptr),
+              nextUsed(nullptr),
+              prevUsed(nullptr),
+              addr(addr),
+              size(size) {}
     };
 
     struct page_t {
-        page_t*  next;        
-        
+        page_t* next;
+
         // List of used blocks
         block_t* usedList;
-        
+
         // List with blocks sorted by descreasing sizes
         // Used for block lookup during memory allocation.
         block_t* freeSList;
-        
+
         // List with blocks sorted by increasing memory addresses
         // Used for block merging during memory release.
         block_t* freeMList;
-        
+
         uint64_t addr;
         uint64_t size;
 
-        page_t(uint64_t addr, uint64_t size) : 
-            next(nullptr),            
-            usedList(nullptr),
-            addr(addr),
-            size(size) {
+        page_t(uint64_t addr, uint64_t size)
+            : next(nullptr), usedList(nullptr), addr(addr), size(size) {
             freeSList = freeMList = new block_t(addr, size);
         }
 
@@ -273,7 +263,7 @@ private:
             }
             if (currBlock) {
                 currBlock->prevFreeM = block;
-            }    
+            }
         }
 
         void RemoveFreeMBlock(block_t* block) {
@@ -318,7 +308,7 @@ private:
                 block->nextFreeS->prevFreeS = block->prevFreeS;
             }
             block->nextFreeS = nullptr;
-            block->prevFreeS = nullptr;    
+            block->prevFreeS = nullptr;
         }
     };
 
@@ -340,7 +330,7 @@ private:
 
         // Insert the new page into the list
         newPage->next = pages_;
-        pages_ = newPage;
+        pages_        = newPage;
 
         return newPage;
     }
@@ -357,7 +347,7 @@ private:
 
         // Remove the page from the list
         page_t* prevPage = nullptr;
-        auto currPage = pages_;
+        auto currPage    = pages_;
         while (currPage) {
             if (currPage == page) {
                 if (prevPage) {
@@ -373,7 +363,7 @@ private:
 
         // Update next allocation address
         nextAddress_ = page->addr;
-        
+
         // free object
         delete page->freeMList;
         delete page;
@@ -382,12 +372,12 @@ private:
     }
 
     page_t* NextEmptyPage() {
-       auto currPage = pages_;
+        auto currPage = pages_;
         while (currPage) {
             if (nullptr == currPage->usedList)
                 return currPage;
             currPage = currPage->next;
-        } 
+        }
         return nullptr;
     }
 
@@ -398,9 +388,9 @@ private:
 
     uint64_t nextAddress_;
     uint64_t maxAddress_;
-    uint32_t pageAlign_;    
+    uint32_t pageAlign_;
     uint32_t blockAlign_;
-    page_t* pages_;    
+    page_t* pages_;
 };
 
-} // namespace vortex
+}  // namespace vortex

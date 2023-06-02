@@ -19,5 +19,4 @@ enum Constants {
     SMEM_BANK_OFFSET = log2ceil(sizeof(uint32_t)) + log2ceil(STACK_SIZE / sizeof(uint32_t)),
 
 };
-
 }

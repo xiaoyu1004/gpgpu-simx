@@ -87,9 +87,9 @@
 #endif
 
 // Device identification
-#define VENDOR_ID           0
-#define ARCHITECTURE_ID     0
-#define IMPLEMENTATION_ID   0
+#define VENDOR_ID 0
+#define ARCHITECTURE_ID 0
+#define IMPLEMENTATION_ID 0
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -134,149 +134,149 @@
 // CSR Addresses //////////////////////////////////////////////////////////////
 
 // User Floating-Point CSRs
-#define CSR_FFLAGS      0x001
-#define CSR_FRM         0x002
-#define CSR_FCSR        0x003
+#define CSR_FFLAGS 0x001
+#define CSR_FRM 0x002
+#define CSR_FCSR 0x003
 
-#define CSR_SATP        0x180
+#define CSR_SATP 0x180
 
-#define CSR_PMPCFG0     0x3A0
-#define CSR_PMPADDR0    0x3B0
+#define CSR_PMPCFG0 0x3A0
+#define CSR_PMPADDR0 0x3B0
 
-#define CSR_MSTATUS     0x300
-#define CSR_MISA        0x301
-#define CSR_MEDELEG     0x302
-#define CSR_MIDELEG     0x303
-#define CSR_MIE         0x304
-#define CSR_MTVEC       0x305
+#define CSR_MSTATUS 0x300
+#define CSR_MISA 0x301
+#define CSR_MEDELEG 0x302
+#define CSR_MIDELEG 0x303
+#define CSR_MIE 0x304
+#define CSR_MTVEC 0x305
 
-#define CSR_MEPC        0x341
+#define CSR_MEPC 0x341
 
 // Machine Performance-monitoring counters
-#define CSR_MPM_BASE                0xB00
-#define CSR_MPM_BASE_H              0xB80
+#define CSR_MPM_BASE 0xB00
+#define CSR_MPM_BASE_H 0xB80
 // PERF: pipeline
-#define CSR_MCYCLE                  0xB00
-#define CSR_MCYCLE_H                0xB80
-#define CSR_MPM_RESERVED            0xB01
-#define CSR_MPM_RESERVED_H          0xB81
-#define CSR_MINSTRET                0xB02
-#define CSR_MINSTRET_H              0xB82
-#define CSR_MPM_IBUF_ST             0xB03
-#define CSR_MPM_IBUF_ST_H           0xB83
-#define CSR_MPM_SCRB_ST             0xB04
-#define CSR_MPM_SCRB_ST_H           0xB84
-#define CSR_MPM_ALU_ST              0xB05
-#define CSR_MPM_ALU_ST_H            0xB85
-#define CSR_MPM_LSU_ST              0xB06
-#define CSR_MPM_LSU_ST_H            0xB86
-#define CSR_MPM_CSR_ST              0xB07
-#define CSR_MPM_CSR_ST_H            0xB87
-#define CSR_MPM_FPU_ST              0xB08
-#define CSR_MPM_FPU_ST_H            0xB88
-#define CSR_MPM_GPU_ST              0xB09
-#define CSR_MPM_GPU_ST_H            0xB89
+#define CSR_MCYCLE 0xB00
+#define CSR_MCYCLE_H 0xB80
+#define CSR_MPM_RESERVED 0xB01
+#define CSR_MPM_RESERVED_H 0xB81
+#define CSR_MINSTRET 0xB02
+#define CSR_MINSTRET_H 0xB82
+#define CSR_MPM_IBUF_ST 0xB03
+#define CSR_MPM_IBUF_ST_H 0xB83
+#define CSR_MPM_SCRB_ST 0xB04
+#define CSR_MPM_SCRB_ST_H 0xB84
+#define CSR_MPM_ALU_ST 0xB05
+#define CSR_MPM_ALU_ST_H 0xB85
+#define CSR_MPM_LSU_ST 0xB06
+#define CSR_MPM_LSU_ST_H 0xB86
+#define CSR_MPM_CSR_ST 0xB07
+#define CSR_MPM_CSR_ST_H 0xB87
+#define CSR_MPM_FPU_ST 0xB08
+#define CSR_MPM_FPU_ST_H 0xB88
+#define CSR_MPM_GPU_ST 0xB09
+#define CSR_MPM_GPU_ST_H 0xB89
 // PERF: decode
-#define CSR_MPM_LOADS               0xB0A
-#define CSR_MPM_LOADS_H             0xB8A
-#define CSR_MPM_STORES              0xB0B
-#define CSR_MPM_STORES_H            0xB8B
-#define CSR_MPM_BRANCHES            0xB0C
-#define CSR_MPM_BRANCHES_H          0xB8C
+#define CSR_MPM_LOADS 0xB0A
+#define CSR_MPM_LOADS_H 0xB8A
+#define CSR_MPM_STORES 0xB0B
+#define CSR_MPM_STORES_H 0xB8B
+#define CSR_MPM_BRANCHES 0xB0C
+#define CSR_MPM_BRANCHES_H 0xB8C
 // PERF: icache
-#define CSR_MPM_ICACHE_READS        0xB0D     // total reads
-#define CSR_MPM_ICACHE_READS_H      0xB8D
-#define CSR_MPM_ICACHE_MISS_R       0xB0E     // read misses
-#define CSR_MPM_ICACHE_MISS_R_H     0xB8E
+#define CSR_MPM_ICACHE_READS 0xB0D  // total reads
+#define CSR_MPM_ICACHE_READS_H 0xB8D
+#define CSR_MPM_ICACHE_MISS_R 0xB0E  // read misses
+#define CSR_MPM_ICACHE_MISS_R_H 0xB8E
 // PERF: dcache
-#define CSR_MPM_DCACHE_READS        0xB0F     // total reads
-#define CSR_MPM_DCACHE_READS_H      0xB8F
-#define CSR_MPM_DCACHE_WRITES       0xB10     // total writes
-#define CSR_MPM_DCACHE_WRITES_H     0xB90
-#define CSR_MPM_DCACHE_MISS_R       0xB11     // read misses
-#define CSR_MPM_DCACHE_MISS_R_H     0xB91
-#define CSR_MPM_DCACHE_MISS_W       0xB12     // write misses
-#define CSR_MPM_DCACHE_MISS_W_H     0xB92
-#define CSR_MPM_DCACHE_BANK_ST      0xB13     // bank conflicts
-#define CSR_MPM_DCACHE_BANK_ST_H    0xB93
-#define CSR_MPM_DCACHE_MSHR_ST      0xB14     // MSHR stalls
-#define CSR_MPM_DCACHE_MSHR_ST_H    0xB94
+#define CSR_MPM_DCACHE_READS 0xB0F  // total reads
+#define CSR_MPM_DCACHE_READS_H 0xB8F
+#define CSR_MPM_DCACHE_WRITES 0xB10  // total writes
+#define CSR_MPM_DCACHE_WRITES_H 0xB90
+#define CSR_MPM_DCACHE_MISS_R 0xB11  // read misses
+#define CSR_MPM_DCACHE_MISS_R_H 0xB91
+#define CSR_MPM_DCACHE_MISS_W 0xB12  // write misses
+#define CSR_MPM_DCACHE_MISS_W_H 0xB92
+#define CSR_MPM_DCACHE_BANK_ST 0xB13  // bank conflicts
+#define CSR_MPM_DCACHE_BANK_ST_H 0xB93
+#define CSR_MPM_DCACHE_MSHR_ST 0xB14  // MSHR stalls
+#define CSR_MPM_DCACHE_MSHR_ST_H 0xB94
 // PERF: smem
-#define CSR_MPM_SMEM_READS          0xB15     // total reads
-#define CSR_MPM_SMEM_READS_H        0xB95
-#define CSR_MPM_SMEM_WRITES         0xB16     // total writes
-#define CSR_MPM_SMEM_WRITES_H       0xB96
-#define CSR_MPM_SMEM_BANK_ST        0xB17     // bank conflicts
-#define CSR_MPM_SMEM_BANK_ST_H      0xB97
+#define CSR_MPM_SMEM_READS 0xB15  // total reads
+#define CSR_MPM_SMEM_READS_H 0xB95
+#define CSR_MPM_SMEM_WRITES 0xB16  // total writes
+#define CSR_MPM_SMEM_WRITES_H 0xB96
+#define CSR_MPM_SMEM_BANK_ST 0xB17  // bank conflicts
+#define CSR_MPM_SMEM_BANK_ST_H 0xB97
 // PERF: memory
-#define CSR_MPM_MEM_READS           0xB18     // memory reads
-#define CSR_MPM_MEM_READS_H         0xB98
-#define CSR_MPM_MEM_WRITES          0xB19     // memory writes
-#define CSR_MPM_MEM_WRITES_H        0xB99
-#define CSR_MPM_MEM_LAT             0xB1A     // memory latency
-#define CSR_MPM_MEM_LAT_H           0xB9A
+#define CSR_MPM_MEM_READS 0xB18  // memory reads
+#define CSR_MPM_MEM_READS_H 0xB98
+#define CSR_MPM_MEM_WRITES 0xB19  // memory writes
+#define CSR_MPM_MEM_WRITES_H 0xB99
+#define CSR_MPM_MEM_LAT 0xB1A  // memory latency
+#define CSR_MPM_MEM_LAT_H 0xB9A
 // PERF: texunit
-#define CSR_MPM_TEX_READS           0xB1B     // texture accesses
-#define CSR_MPM_TEX_READS_H         0xB9B
-#define CSR_MPM_TEX_LAT             0xB1C     // texture latency
-#define CSR_MPM_TEX_LAT_H           0xB9C
+#define CSR_MPM_TEX_READS 0xB1B  // texture accesses
+#define CSR_MPM_TEX_READS_H 0xB9B
+#define CSR_MPM_TEX_LAT 0xB1C  // texture latency
+#define CSR_MPM_TEX_LAT_H 0xB9C
 
 // Machine Information Registers
-#define CSR_MVENDORID   0xF11
-#define CSR_MARCHID     0xF12
-#define CSR_MIMPID      0xF13
-#define CSR_MHARTID     0xF14
+#define CSR_MVENDORID 0xF11
+#define CSR_MARCHID 0xF12
+#define CSR_MIMPID 0xF13
+#define CSR_MHARTID 0xF14
 
 // User SIMT CSRs
-#define CSR_WTID        0xCC0
-#define CSR_LTID        0xCC1
-#define CSR_GTID        0xCC2
-#define CSR_LWID        0xCC3
-#define CSR_GWID        CSR_MHARTID
-#define CSR_GCID        0xCC5
-#define CSR_TMASK       0xCC4
+#define CSR_WTID 0xCC0
+#define CSR_LTID 0xCC1
+#define CSR_GTID 0xCC2
+#define CSR_LWID 0xCC3
+#define CSR_GWID CSR_MHARTID
+#define CSR_GCID 0xCC5
+#define CSR_TMASK 0xCC4
 
 // Machine SIMT CSRs
-#define CSR_NT          0xFC0
-#define CSR_NW          0xFC1
-#define CSR_NC          0xFC2
+#define CSR_NT 0xFC0
+#define CSR_NW 0xFC1
+#define CSR_NC 0xFC2
 
 ////////// Texture Units //////////////////////////////////////////////////////
 
-#define NUM_TEX_UNITS           2
-#define TEX_SUBPIXEL_BITS       8
+#define NUM_TEX_UNITS 2
+#define TEX_SUBPIXEL_BITS 8
 
-#define TEX_DIM_BITS            15
-#define TEX_LOD_MAX             TEX_DIM_BITS
-#define TEX_LOD_BITS            4
+#define TEX_DIM_BITS 15
+#define TEX_LOD_MAX TEX_DIM_BITS
+#define TEX_LOD_BITS 4
 
-#define TEX_FXD_BITS            32
-#define TEX_FXD_FRAC            (TEX_DIM_BITS+TEX_SUBPIXEL_BITS)
+#define TEX_FXD_BITS 32
+#define TEX_FXD_FRAC (TEX_DIM_BITS + TEX_SUBPIXEL_BITS)
 
-#define TEX_STATE_ADDR          0
-#define TEX_STATE_WIDTH         1
-#define TEX_STATE_HEIGHT        2
-#define TEX_STATE_FORMAT        3
-#define TEX_STATE_FILTER        4
-#define TEX_STATE_WRAPU         5
-#define TEX_STATE_WRAPV         6
-#define TEX_STATE_MIPOFF(lod)   (7+(lod))
-#define NUM_TEX_STATES          (TEX_STATE_MIPOFF(TEX_LOD_MAX)+1)
+#define TEX_STATE_ADDR 0
+#define TEX_STATE_WIDTH 1
+#define TEX_STATE_HEIGHT 2
+#define TEX_STATE_FORMAT 3
+#define TEX_STATE_FILTER 4
+#define TEX_STATE_WRAPU 5
+#define TEX_STATE_WRAPV 6
+#define TEX_STATE_MIPOFF(lod) (7 + (lod))
+#define NUM_TEX_STATES (TEX_STATE_MIPOFF(TEX_LOD_MAX) + 1)
 
-#define CSR_TEX_UNIT            0xFD0
+#define CSR_TEX_UNIT 0xFD0
 
-#define CSR_TEX_STATE_BEGIN     0xFD1
-#define CSR_TEX_ADDR            (CSR_TEX_STATE_BEGIN+TEX_STATE_ADDR)
-#define CSR_TEX_WIDTH           (CSR_TEX_STATE_BEGIN+TEX_STATE_WIDTH)
-#define CSR_TEX_HEIGHT          (CSR_TEX_STATE_BEGIN+TEX_STATE_HEIGHT)
-#define CSR_TEX_FORMAT          (CSR_TEX_STATE_BEGIN+TEX_STATE_FORMAT)
-#define CSR_TEX_FILTER          (CSR_TEX_STATE_BEGIN+TEX_STATE_FILTER)
-#define CSR_TEX_WRAPU           (CSR_TEX_STATE_BEGIN+TEX_STATE_WRAPU)
-#define CSR_TEX_WRAPV           (CSR_TEX_STATE_BEGIN+TEX_STATE_WRAPV)
-#define CSR_TEX_MIPOFF(lod)     (CSR_TEX_STATE_BEGIN+TEX_STATE_MIPOFF(lod))
-#define CSR_TEX_STATE_END       (CSR_TEX_STATE_BEGIN+NUM_TEX_STATES)
+#define CSR_TEX_STATE_BEGIN 0xFD1
+#define CSR_TEX_ADDR (CSR_TEX_STATE_BEGIN + TEX_STATE_ADDR)
+#define CSR_TEX_WIDTH (CSR_TEX_STATE_BEGIN + TEX_STATE_WIDTH)
+#define CSR_TEX_HEIGHT (CSR_TEX_STATE_BEGIN + TEX_STATE_HEIGHT)
+#define CSR_TEX_FORMAT (CSR_TEX_STATE_BEGIN + TEX_STATE_FORMAT)
+#define CSR_TEX_FILTER (CSR_TEX_STATE_BEGIN + TEX_STATE_FILTER)
+#define CSR_TEX_WRAPU (CSR_TEX_STATE_BEGIN + TEX_STATE_WRAPU)
+#define CSR_TEX_WRAPV (CSR_TEX_STATE_BEGIN + TEX_STATE_WRAPV)
+#define CSR_TEX_MIPOFF(lod) (CSR_TEX_STATE_BEGIN + TEX_STATE_MIPOFF(lod))
+#define CSR_TEX_STATE_END (CSR_TEX_STATE_BEGIN + NUM_TEX_STATES)
 
-#define CSR_TEX_STATE(addr)     ((addr) - CSR_TEX_STATE_BEGIN)
+#define CSR_TEX_STATE(addr) ((addr)-CSR_TEX_STATE_BEGIN)
 
 // Pipeline Queues ////////////////////////////////////////////////////////////
 

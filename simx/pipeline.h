@@ -1,137 +1,123 @@
 
 #pragma once
 
-#include <memory>
-#include <iostream>
-#include <util.h>
-#include "types.h"
 #include "archdef.h"
 #include "debug.h"
+#include "types.h"
+#include <iostream>
+#include <memory>
+#include <util.h>
 
 namespace vortex {
 
 struct pipeline_trace_t {
-  //--
-  uint64_t    uuid;
-  
-  //--
-  uint32_t    cid;
-  uint32_t    wid;  
-  ThreadMask  tmask;
-  Word        PC;
+    //--
+    uint64_t uuid;
 
-  //--
-  bool        fetch_stall;
+    //--
+    uint32_t cid;
+    uint32_t wid;
+    ThreadMask tmask;
+    Word PC;
 
-  //--
-  bool        wb;  
-  RegType     rdest_type;
-  uint32_t    rdest;
+    //--
+    bool fetch_stall;
 
-  //--
-  RegMask     used_iregs;
-  RegMask     used_fregs;
-  RegMask     used_vregs;
+    //--
+    bool wb;
+    RegType rdest_type;
+    uint32_t rdest;
 
-  //- 
-  ExeType     exe_type; 
+    //--
+    RegMask used_iregs;
+    RegMask used_fregs;
+    RegMask used_vregs;
 
-  //--
-  std::vector<std::vector<mem_addr_size_t>> mem_addrs;
-  
-  //--
-  union {
-    struct {        
-      LsuType type;
-    } lsu;
-    struct {
-      AluType type;
-    } alu;
-    struct {
-      FpuType type;
-    } fpu;
-    struct {
-      GpuType type;
-      WarpMask active_warps;
-    } gpu;
-  };
+    //-
+    ExeType exe_type;
 
-  bool stalled;
+    //--
+    std::vector<std::vector<mem_addr_size_t>> mem_addrs;
 
-  pipeline_trace_t(uint64_t uuid_, const ArchDef& arch) {
-    uuid = uuid_;
-    cid = 0;
-    wid = 0;
-    tmask.reset();
-    PC = 0;
-    fetch_stall = false;
-    wb  = false;
-    rdest = 0;
-    rdest_type = RegType::None;
-    used_iregs.reset();
-    used_fregs.reset();
-    used_vregs.reset();
-    exe_type = ExeType::NOP;
-    mem_addrs.resize(arch.num_threads());
-    stalled = false;
-  }
+    //--
+    union {
+        struct {
+            LsuType type;
+        } lsu;
+        struct {
+            AluType type;
+        } alu;
+        struct {
+            FpuType type;
+        } fpu;
+        struct {
+            GpuType type;
+            WarpMask active_warps;
+        } gpu;
+    };
 
-  bool suspend() {
-    bool old = stalled;
-    stalled = true;
-    return old;
-  }
+    bool stalled;
 
-  void resume() {
-    stalled = false;
-  }
+    pipeline_trace_t(uint64_t uuid_, const ArchDef& arch) {
+        uuid = uuid_;
+        cid  = 0;
+        wid  = 0;
+        tmask.reset();
+        PC          = 0;
+        fetch_stall = false;
+        wb          = false;
+        rdest       = 0;
+        rdest_type  = RegType::None;
+        used_iregs.reset();
+        used_fregs.reset();
+        used_vregs.reset();
+        exe_type = ExeType::NOP;
+        mem_addrs.resize(arch.num_threads());
+        stalled = false;
+    }
+
+    bool suspend() {
+        bool old = stalled;
+        stalled  = true;
+        return old;
+    }
+
+    void resume() { stalled = false; }
 };
 
-inline std::ostream &operator<<(std::ostream &os, const pipeline_trace_t& state) {
-  os << "coreid=" << state.cid << ", wid=" << state.wid << ", PC=" << std::hex << state.PC;
-  os << ", wb=" << state.wb;
-  if (state.wb) {
-     os << ", rd=" << state.rdest_type << std::dec << state.rdest;
-  }
-  os << ", ex=" << state.exe_type;
-  os << " (#" << std::dec << state.uuid << ")";
-  return os;
+inline std::ostream& operator<<(std::ostream& os, const pipeline_trace_t& state) {
+    os << "coreid=" << state.cid << ", wid=" << state.wid << ", PC=" << std::hex << state.PC;
+    os << ", wb=" << state.wb;
+    if (state.wb) {
+        os << ", rd=" << state.rdest_type << std::dec << state.rdest;
+    }
+    os << ", ex=" << state.exe_type;
+    os << " (#" << std::dec << state.uuid << ")";
+    return os;
 }
 
 class PipelineLatch {
-protected:
-  const char* name_;
-  std::queue<pipeline_trace_t*> queue_;
+ protected:
+    const char* name_;
+    std::queue<pipeline_trace_t*> queue_;
 
-public:
-  PipelineLatch(const char* name = nullptr) 
-    : name_(name) 
-  {}
-  
-  bool empty() const {
-    return queue_.empty();
-  }
+ public:
+    PipelineLatch(const char* name = nullptr) : name_(name) {}
 
-  pipeline_trace_t* front() {
-    return queue_.front();
-  }
+    bool empty() const { return queue_.empty(); }
 
-  pipeline_trace_t* back() {
-    return queue_.back();
-  }
+    pipeline_trace_t* front() { return queue_.front(); }
 
-  void push(pipeline_trace_t* value) {    
-    queue_.push(value);
-  }
+    pipeline_trace_t* back() { return queue_.back(); }
 
-  void pop() {
-    queue_.pop();
-  }
+    void push(pipeline_trace_t* value) { queue_.push(value); }
 
-  void clear() {
-    std::queue<pipeline_trace_t*> empty;
-    std::swap(queue_, empty );
-  }
+    void pop() { queue_.pop(); }
+
+    void clear() {
+        std::queue<pipeline_trace_t*> empty;
+        std::swap(queue_, empty);
+    }
 };
 
-}
+}  // namespace vortex

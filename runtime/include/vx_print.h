@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 int vx_vprintf(const char* format, va_list va);
-int vx_printf(const char * format, ...);
+int vx_printf(const char* format, ...);
 
 void vx_putchar(int c);
 void vx_putint(int value, int base);

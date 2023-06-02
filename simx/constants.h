@@ -12,6 +12,10 @@
 #define MEMORY_BANKS 2
 #endif
 
+#include <VX_config.h>
+
+#include <cstdint>
+
 namespace vortex {
 
 enum Constants {

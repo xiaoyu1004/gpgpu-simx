@@ -1,6 +1,9 @@
 #include "common.h"
+
 #include <chrono>
 #include <iostream>
+#include <random>
+#include <chrono>
 #include <string.h>
 #include <unistd.h>
 #include <vortex.h>
@@ -18,8 +21,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 const char* kernel_file = "kernel.bin";
-int test                = -1;
-uint32_t count          = 0;
+int test                = 1;
+uint32_t count          = 10;
 
 vx_device_h device      = nullptr;
 vx_buffer_h staging_buf = nullptr;
@@ -44,6 +47,16 @@ static void parse_args(int argc, char** argv) {
         } break;
         default: show_usage(); exit(-1);
         }
+    }
+}
+
+void RandInit(int32_t* data, unsigned size) {
+    unsigned seed = time(NULL);
+    std::mt19937 e(seed);
+    std::uniform_int_distribution<> dist(-128, 127);
+
+    for (unsigned i = 0; i < size; ++i) {
+        data[i] = dist(e);
     }
 }
 
@@ -139,6 +152,7 @@ int run_kernel_test(const kernel_arg_t& kernel_arg, uint32_t buf_size, uint32_t 
         for (uint32_t i = 0; i < num_points; ++i) {
             buf_ptr[i] = i;
         }
+        // RandInit(buf_ptr, num_points);
     }
     std::cout << "upload source buffer" << std::endl;
     auto t0 = std::chrono::high_resolution_clock::now();

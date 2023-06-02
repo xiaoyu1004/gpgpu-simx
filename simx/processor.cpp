@@ -1,6 +1,9 @@
 #include "processor.h"
+#include "bitmanip.h"
 #include "constants.h"
 #include "core.h"
+
+#include <cstdint>
 
 using namespace vortex;
 

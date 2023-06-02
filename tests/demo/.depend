@@ -1,2 +1,2 @@
-main.o: main.cpp \
- /home/xiaoyu/workspace/gpgpu-simx/driver/include/vortex.h common.h
+main.o: main.cpp common.h \
+ /home/xiaoyu/workspace/gpgpu-simx/driver/include/vortex.h

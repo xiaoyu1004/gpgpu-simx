@@ -1,6 +1,8 @@
 #ifndef _COMMON_H_
 #define _COMMON_H_
 
+#include <cstdint>
+
 #define KERNEL_ARG_DEV_MEM_ADDR 0x7ffff000
 
 typedef struct {

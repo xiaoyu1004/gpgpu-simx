@@ -1,0 +1,220 @@
+
+kernel.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text.startup.main:
+
+80000000 <main>:
+80000000:	ff010113          	add	sp,sp,-16
+80000004:	00112623          	sw	ra,12(sp)
+80000008:	00812423          	sw	s0,8(sp)
+8000000c:	fff00793          	li	a5,-1
+80000010:	0007806b          	.4byte	0x7806b
+80000014:	fc0027f3          	csrr	a5,0xfc0
+80000018:	cc302773          	csrr	a4,0xcc3
+8000001c:	cc0025f3          	csrr	a1,0xcc0
+80000020:	02f707b3          	mul	a5,a4,a5
+80000024:	7ffff6b7          	lui	a3,0x7ffff
+80000028:	0046a603          	lw	a2,4(a3) # 7ffff004 <main-0xffc>
+8000002c:	0086a683          	lw	a3,8(a3)
+80000030:	00000413          	li	s0,0
+80000034:	00b787b3          	add	a5,a5,a1
+80000038:	00279793          	sll	a5,a5,0x2
+8000003c:	00f60633          	add	a2,a2,a5
+80000040:	00062603          	lw	a2,0(a2)
+80000044:	00f687b3          	add	a5,a3,a5
+80000048:	00c7a023          	sw	a2,0(a5)
+8000004c:	00400793          	li	a5,4
+80000050:	00f4406b          	.4byte	0xf4406b
+80000054:	00173713          	seqz	a4,a4
+80000058:	0007006b          	.4byte	0x7006b
+8000005c:	018000ef          	jal	80000074 <vx_perf_dump>
+80000060:	0004006b          	.4byte	0x4006b
+80000064:	00c12083          	lw	ra,12(sp)
+80000068:	00812403          	lw	s0,8(sp)
+8000006c:	01010113          	add	sp,sp,16
+80000070:	00008067          	ret
+
+Disassembly of section .text.vx_perf_dump:
+
+80000074 <vx_perf_dump>:
+80000074:	cc5027f3          	csrr	a5,0xcc5
+80000078:	00ff0737          	lui	a4,0xff0
+8000007c:	00e787b3          	add	a5,a5,a4
+80000080:	00879793          	sll	a5,a5,0x8
+80000084:	b0002773          	csrr	a4,mcycle
+80000088:	00e7a023          	sw	a4,0(a5)
+8000008c:	b0102773          	csrr	a4,0xb01
+80000090:	00e7a223          	sw	a4,4(a5)
+80000094:	b0202773          	csrr	a4,minstret
+80000098:	00e7a423          	sw	a4,8(a5)
+8000009c:	b0302773          	csrr	a4,mhpmcounter3
+800000a0:	00e7a623          	sw	a4,12(a5)
+800000a4:	b0402773          	csrr	a4,mhpmcounter4
+800000a8:	00e7a823          	sw	a4,16(a5)
+800000ac:	b0502773          	csrr	a4,mhpmcounter5
+800000b0:	00e7aa23          	sw	a4,20(a5)
+800000b4:	b0602773          	csrr	a4,mhpmcounter6
+800000b8:	00e7ac23          	sw	a4,24(a5)
+800000bc:	b0702773          	csrr	a4,mhpmcounter7
+800000c0:	00e7ae23          	sw	a4,28(a5)
+800000c4:	b0802773          	csrr	a4,mhpmcounter8
+800000c8:	02e7a023          	sw	a4,32(a5)
+800000cc:	b0902773          	csrr	a4,mhpmcounter9
+800000d0:	02e7a223          	sw	a4,36(a5)
+800000d4:	b0a02773          	csrr	a4,mhpmcounter10
+800000d8:	02e7a423          	sw	a4,40(a5)
+800000dc:	b0b02773          	csrr	a4,mhpmcounter11
+800000e0:	02e7a623          	sw	a4,44(a5)
+800000e4:	b0c02773          	csrr	a4,mhpmcounter12
+800000e8:	02e7a823          	sw	a4,48(a5)
+800000ec:	b0d02773          	csrr	a4,mhpmcounter13
+800000f0:	02e7aa23          	sw	a4,52(a5)
+800000f4:	b0e02773          	csrr	a4,mhpmcounter14
+800000f8:	02e7ac23          	sw	a4,56(a5)
+800000fc:	b0f02773          	csrr	a4,mhpmcounter15
+80000100:	02e7ae23          	sw	a4,60(a5)
+80000104:	b1002773          	csrr	a4,mhpmcounter16
+80000108:	04e7a023          	sw	a4,64(a5)
+8000010c:	b1102773          	csrr	a4,mhpmcounter17
+80000110:	04e7a223          	sw	a4,68(a5)
+80000114:	b1202773          	csrr	a4,mhpmcounter18
+80000118:	04e7a423          	sw	a4,72(a5)
+8000011c:	b1302773          	csrr	a4,mhpmcounter19
+80000120:	04e7a623          	sw	a4,76(a5)
+80000124:	b1402773          	csrr	a4,mhpmcounter20
+80000128:	04e7a823          	sw	a4,80(a5)
+8000012c:	b1502773          	csrr	a4,mhpmcounter21
+80000130:	04e7aa23          	sw	a4,84(a5)
+80000134:	b1602773          	csrr	a4,mhpmcounter22
+80000138:	04e7ac23          	sw	a4,88(a5)
+8000013c:	b1702773          	csrr	a4,mhpmcounter23
+80000140:	04e7ae23          	sw	a4,92(a5)
+80000144:	b1802773          	csrr	a4,mhpmcounter24
+80000148:	06e7a023          	sw	a4,96(a5)
+8000014c:	b1902773          	csrr	a4,mhpmcounter25
+80000150:	06e7a223          	sw	a4,100(a5)
+80000154:	b1a02773          	csrr	a4,mhpmcounter26
+80000158:	06e7a423          	sw	a4,104(a5)
+8000015c:	b1b02773          	csrr	a4,mhpmcounter27
+80000160:	06e7a623          	sw	a4,108(a5)
+80000164:	b1c02773          	csrr	a4,mhpmcounter28
+80000168:	06e7a823          	sw	a4,112(a5)
+8000016c:	b1d02773          	csrr	a4,mhpmcounter29
+80000170:	06e7aa23          	sw	a4,116(a5)
+80000174:	b1e02773          	csrr	a4,mhpmcounter30
+80000178:	06e7ac23          	sw	a4,120(a5)
+8000017c:	b1f02773          	csrr	a4,mhpmcounter31
+80000180:	06e7ae23          	sw	a4,124(a5)
+80000184:	b8002773          	csrr	a4,mcycleh
+80000188:	08e7a023          	sw	a4,128(a5)
+8000018c:	b8102773          	csrr	a4,0xb81
+80000190:	08e7a223          	sw	a4,132(a5)
+80000194:	b8202773          	csrr	a4,minstreth
+80000198:	08e7a423          	sw	a4,136(a5)
+8000019c:	b8302773          	csrr	a4,mhpmcounter3h
+800001a0:	08e7a623          	sw	a4,140(a5)
+800001a4:	b8402773          	csrr	a4,mhpmcounter4h
+800001a8:	08e7a823          	sw	a4,144(a5)
+800001ac:	b8502773          	csrr	a4,mhpmcounter5h
+800001b0:	08e7aa23          	sw	a4,148(a5)
+800001b4:	b8602773          	csrr	a4,mhpmcounter6h
+800001b8:	08e7ac23          	sw	a4,152(a5)
+800001bc:	b8702773          	csrr	a4,mhpmcounter7h
+800001c0:	08e7ae23          	sw	a4,156(a5)
+800001c4:	b8802773          	csrr	a4,mhpmcounter8h
+800001c8:	0ae7a023          	sw	a4,160(a5)
+800001cc:	b8902773          	csrr	a4,mhpmcounter9h
+800001d0:	0ae7a223          	sw	a4,164(a5)
+800001d4:	b8a02773          	csrr	a4,mhpmcounter10h
+800001d8:	0ae7a423          	sw	a4,168(a5)
+800001dc:	b8b02773          	csrr	a4,mhpmcounter11h
+800001e0:	0ae7a623          	sw	a4,172(a5)
+800001e4:	b8c02773          	csrr	a4,mhpmcounter12h
+800001e8:	0ae7a823          	sw	a4,176(a5)
+800001ec:	b8d02773          	csrr	a4,mhpmcounter13h
+800001f0:	0ae7aa23          	sw	a4,180(a5)
+800001f4:	b8e02773          	csrr	a4,mhpmcounter14h
+800001f8:	0ae7ac23          	sw	a4,184(a5)
+800001fc:	b8f02773          	csrr	a4,mhpmcounter15h
+80000200:	0ae7ae23          	sw	a4,188(a5)
+80000204:	b9002773          	csrr	a4,mhpmcounter16h
+80000208:	0ce7a023          	sw	a4,192(a5)
+8000020c:	b9102773          	csrr	a4,mhpmcounter17h
+80000210:	0ce7a223          	sw	a4,196(a5)
+80000214:	b9202773          	csrr	a4,mhpmcounter18h
+80000218:	0ce7a423          	sw	a4,200(a5)
+8000021c:	b9302773          	csrr	a4,mhpmcounter19h
+80000220:	0ce7a623          	sw	a4,204(a5)
+80000224:	b9402773          	csrr	a4,mhpmcounter20h
+80000228:	0ce7a823          	sw	a4,208(a5)
+8000022c:	b9502773          	csrr	a4,mhpmcounter21h
+80000230:	0ce7aa23          	sw	a4,212(a5)
+80000234:	b9602773          	csrr	a4,mhpmcounter22h
+80000238:	0ce7ac23          	sw	a4,216(a5)
+8000023c:	b9702773          	csrr	a4,mhpmcounter23h
+80000240:	0ce7ae23          	sw	a4,220(a5)
+80000244:	b9802773          	csrr	a4,mhpmcounter24h
+80000248:	0ee7a023          	sw	a4,224(a5)
+8000024c:	b9902773          	csrr	a4,mhpmcounter25h
+80000250:	0ee7a223          	sw	a4,228(a5)
+80000254:	b9a02773          	csrr	a4,mhpmcounter26h
+80000258:	0ee7a423          	sw	a4,232(a5)
+8000025c:	b9b02773          	csrr	a4,mhpmcounter27h
+80000260:	0ee7a623          	sw	a4,236(a5)
+80000264:	b9c02773          	csrr	a4,mhpmcounter28h
+80000268:	0ee7a823          	sw	a4,240(a5)
+8000026c:	b9d02773          	csrr	a4,mhpmcounter29h
+80000270:	0ee7aa23          	sw	a4,244(a5)
+80000274:	b9e02773          	csrr	a4,mhpmcounter30h
+80000278:	0ee7ac23          	sw	a4,248(a5)
+8000027c:	b9f02773          	csrr	a4,mhpmcounter31h
+80000280:	0ee7ae23          	sw	a4,252(a5)
+80000284:	00008067          	ret
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347          	.4byte	0x3a434347
+   4:	2820                	.2byte	0x2820
+   6:	65653267          	.4byte	0x65653267
+   a:	6535                	.2byte	0x6535
+   c:	3334                	.2byte	0x3334
+   e:	3030                	.2byte	0x3030
+  10:	3831                	.2byte	0x3831
+  12:	642d                	.2byte	0x642d
+  14:	7269                	.2byte	0x7269
+  16:	7974                	.2byte	0x7974
+  18:	2029                	.2byte	0x2029
+  1a:	3231                	.2byte	0x3231
+  1c:	322e                	.2byte	0x322e
+  1e:	302e                	.2byte	0x302e
+	...
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	3b41                	.2byte	0x3b41
+   2:	0000                	.2byte	0x0
+   4:	7200                	.2byte	0x7200
+   6:	7369                	.2byte	0x7369
+   8:	01007663          	bgeu	zero,a6,14 <main-0x7fffffec>
+   c:	0031                	.2byte	0x31
+   e:	0000                	.2byte	0x0
+  10:	1004                	.2byte	0x1004
+  12:	7205                	.2byte	0x7205
+  14:	3376                	.2byte	0x3376
+  16:	6932                	.2byte	0x6932
+  18:	7032                	.2byte	0x7032
+  1a:	5f31                	.2byte	0x5f31
+  1c:	326d                	.2byte	0x326d
+  1e:	3070                	.2byte	0x3070
+  20:	665f 7032 5f32      	.byte	0x5f, 0x66, 0x32, 0x70, 0x32, 0x5f
+  26:	697a                	.2byte	0x697a
+  28:	32727363          	bgeu	tp,t2,34e <main-0x7ffffcb2>
+  2c:	3070                	.2byte	0x3070
+  2e:	7a5f 6d6d 6c75      	.byte	0x5f, 0x7a, 0x6d, 0x6d, 0x75, 0x6c
+  34:	7031                	.2byte	0x7031
+  36:	0030                	.2byte	0x30
+  38:	0108                	.2byte	0x108
+  3a:	0b0a                	.2byte	0xb0a

@@ -6,7 +6,7 @@ all:
 	$(MAKE) -C tests
 
 clean:
-	$(MAKE) -C third_party clean
+	# $(MAKE) -C third_party clean
 	$(MAKE) -C simx clean
 	$(MAKE) -C driver clean
 	$(MAKE) -C runtime clean

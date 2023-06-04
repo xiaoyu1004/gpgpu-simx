@@ -1,6 +1,6 @@
-#include <stdint.h>
 #include <vx_intrinsics.h>
 #include <vx_spawn.h>
+
 #include "common.h"
 
 void kernel_body(int task_id, kernel_arg_t* arg) {

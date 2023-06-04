@@ -5,5 +5,9 @@
     "editor.fontSize": 15,
     "editor.detectIndentation": false,
     "clang-format.executable": "/usr/bin/clang-format",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "chrono": "cpp",
+        "common.h": "c"
+    }
 }

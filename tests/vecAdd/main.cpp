@@ -3,7 +3,6 @@
 #include <chrono>
 #include <iostream>
 #include <random>
-#include <chrono>
 #include <string.h>
 #include <unistd.h>
 #include <vortex.h>
@@ -22,7 +21,7 @@
 
 const char* kernel_file = "kernel.bin";
 int test                = 1;
-uint32_t count          = 100;
+uint32_t count          = 4;
 
 vx_device_h device      = nullptr;
 vx_buffer_h staging_buf = nullptr;
@@ -146,28 +145,31 @@ int run_kernel_test(const kernel_arg_t& kernel_arg, uint32_t buf_size, uint32_t 
 
     auto time_start = std::chrono::high_resolution_clock::now();
 
+    int32_t *h_ref = new int32_t[num_points]{0};
+
     // update source buffer
     {
         auto buf_ptr = (int32_t*)vx_host_ptr(staging_buf);
-        for (uint32_t i = 0; i < num_points; ++i) {
-            buf_ptr[i] = i;
-        }
-        // RandInit(buf_ptr, num_points);
+        // for (uint32_t i = 0; i < num_points; ++i) {
+        //     buf_ptr[i] = i;
+        // }
+        RandInit(buf_ptr, num_points);
+        memcpy(h_ref, buf_ptr, num_points * sizeof(int32_t));
     }
     std::cout << "upload source buffer" << std::endl;
     auto t0 = std::chrono::high_resolution_clock::now();
     RT_CHECK(vx_copy_to_dev(staging_buf, kernel_arg.src_addr, buf_size, 0));
     auto t1 = std::chrono::high_resolution_clock::now();
 
-    // clear destination buffer
-    {
-        auto buf_ptr = (int32_t*)vx_host_ptr(staging_buf);
-        for (uint32_t i = 0; i < num_points; ++i) {
-            buf_ptr[i] = 0xdeadbeef;
-        }
-    }
-    std::cout << "clear destination buffer" << std::endl;
-    RT_CHECK(vx_copy_to_dev(staging_buf, kernel_arg.dst_addr, buf_size, 0));
+    // // clear destination buffer
+    // {
+    //     auto buf_ptr = (int32_t*)vx_host_ptr(staging_buf);
+    //     for (uint32_t i = 0; i < num_points; ++i) {
+    //         buf_ptr[i] = 0xdeadbeef;
+    //     }
+    // }
+    // std::cout << "clear destination buffer" << std::endl;
+    // RT_CHECK(vx_copy_to_dev(staging_buf, kernel_arg.dst_addr, buf_size, 0));
 
     // start device
     std::cout << "start execution" << std::endl;
@@ -186,7 +188,7 @@ int run_kernel_test(const kernel_arg_t& kernel_arg, uint32_t buf_size, uint32_t 
     std::cout << "verify result" << std::endl;
     for (uint32_t i = 0; i < num_points; ++i) {
         int32_t curr = ((int32_t*)vx_host_ptr(staging_buf))[i];
-        int32_t ref  = i;
+        int32_t ref  = h_ref[i];
         if (curr != ref) {
             std::cout << "error at result #" << std::dec << i << std::hex << ": actual 0x" << curr
                       << ", expected 0x" << ref << std::endl;

@@ -16,12 +16,12 @@ int _lseek(int file, int ptr, int dir) { return 0; }
 int _open(const char *name, int flags, int mode) { return -1; }
  
 int _read(int file, char *ptr, int len) { return -1; }
- 
+
 caddr_t _sbrk(int incr) { 
   __asm__ __volatile__("ebreak");
   return 0; 
 }
- 
+
 int _write(int file, char *ptr, int len) {
   int i; 
   for (i = 0; i < len; ++i) {

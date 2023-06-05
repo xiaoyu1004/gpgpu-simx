@@ -1,0 +1,27 @@
+
+kernel.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	fff00513          	li	a0,-1
+   4:	0005006b          	.4byte	0x5006b
+   8:	cc002773          	csrr	a4,0xcc0
+   c:	cc3027f3          	csrr	a5,0xcc3
+  10:	fc0025f3          	csrr	a1,0xfc0
+  14:	02b787b3          	mul	a5,a5,a1
+  18:	00e787b3          	add	a5,a5,a4
+  1c:	7ffff737          	lui	a4,0x7ffff
+  20:	00472683          	lw	a3,4(a4) # 7ffff004 <KERNEL_ARG_DEV_MEM_ADDR+0x7ff7f005>
+  24:	00872703          	lw	a4,8(a4)
+  28:	00279793          	sll	a5,a5,0x2
+  2c:	00f686b3          	add	a3,a3,a5
+  30:	0006a683          	lw	a3,0(a3)
+  34:	00f707b3          	add	a5,a4,a5
+  38:	00d7a023          	sw	a3,0(a5)
+  3c:	00000613          	li	a2,0
+  40:	00400793          	li	a5,4
+  44:	00c7c06b          	.4byte	0xc7c06b
+  48:	00000513          	li	a0,0
+  4c:	0005006b          	.4byte	0x5006b

@@ -34,7 +34,7 @@ void main() {
     // int num_warps  = vx_num_warps();
     int num_theads = vx_num_threads();
 
-    int core_id   = vx_core_id();
+    // int core_id   = vx_core_id();
     int warp_id   = vx_warp_id();
     int thread_id = vx_thread_id();
 

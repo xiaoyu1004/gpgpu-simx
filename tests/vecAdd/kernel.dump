@@ -4,28 +4,27 @@ kernel.elf:     file format elf32-littleriscv
 
 Disassembly of section .text.startup.main:
 
-80000000 <main>:
-80000000:	fff00793          	li	a5,-1
-80000004:	0007806b          	.4byte	0x7806b
-80000008:	fc002773          	csrr	a4,0xfc0
-8000000c:	cc5027f3          	csrr	a5,0xcc5
-80000010:	cc3027f3          	csrr	a5,0xcc3
-80000014:	cc0025f3          	csrr	a1,0xcc0
-80000018:	02e787b3          	mul	a5,a5,a4
-8000001c:	7ffff737          	lui	a4,0x7ffff
-80000020:	00472683          	lw	a3,4(a4) # 7ffff004 <main-0xffc>
-80000024:	00872703          	lw	a4,8(a4)
-80000028:	00000613          	li	a2,0
-8000002c:	00b787b3          	add	a5,a5,a1
-80000030:	00279793          	sll	a5,a5,0x2
-80000034:	00f686b3          	add	a3,a3,a5
-80000038:	0006a683          	lw	a3,0(a3)
-8000003c:	00f707b3          	add	a5,a4,a5
-80000040:	00d7a023          	sw	a3,0(a5)
-80000044:	00400793          	li	a5,4
-80000048:	00f6406b          	.4byte	0xf6406b
-8000004c:	0006006b          	.4byte	0x6006b
-80000050:	00008067          	ret
+00000000 <main>:
+   0:	fff00793          	li	a5,-1
+   4:	0007806b          	.4byte	0x7806b
+   8:	fc002773          	csrr	a4,0xfc0
+   c:	cc3027f3          	csrr	a5,0xcc3
+  10:	cc0025f3          	csrr	a1,0xcc0
+  14:	02e787b3          	mul	a5,a5,a4
+  18:	7ffff737          	lui	a4,0x7ffff
+  1c:	00472683          	lw	a3,4(a4) # 7ffff004 <main+0x7ffff004>
+  20:	00872703          	lw	a4,8(a4)
+  24:	00000613          	li	a2,0
+  28:	00b787b3          	add	a5,a5,a1
+  2c:	00279793          	sll	a5,a5,0x2
+  30:	00f686b3          	add	a3,a3,a5
+  34:	0006a683          	lw	a3,0(a3)
+  38:	00f707b3          	add	a5,a4,a5
+  3c:	00d7a023          	sw	a3,0(a5)
+  40:	00400793          	li	a5,4
+  44:	00f6406b          	.4byte	0xf6406b
+  48:	0006006b          	.4byte	0x6006b
+  4c:	00008067          	ret
 
 Disassembly of section .comment:
 
@@ -53,7 +52,7 @@ Disassembly of section .riscv.attributes:
    2:	0000                	.2byte	0x0
    4:	7200                	.2byte	0x7200
    6:	7369                	.2byte	0x7369
-   8:	01007663          	bgeu	zero,a6,14 <main-0x7fffffec>
+   8:	01007663          	bgeu	zero,a6,14 <main+0x14>
    c:	0031                	.2byte	0x31
    e:	0000                	.2byte	0x0
   10:	1004                	.2byte	0x1004
@@ -66,7 +65,7 @@ Disassembly of section .riscv.attributes:
   1e:	3070                	.2byte	0x3070
   20:	665f 7032 5f32      	.byte	0x5f, 0x66, 0x32, 0x70, 0x32, 0x5f
   26:	697a                	.2byte	0x697a
-  28:	32727363          	bgeu	tp,t2,34e <main-0x7ffffcb2>
+  28:	32727363          	bgeu	tp,t2,34e <main+0x34e>
   2c:	3070                	.2byte	0x3070
   2e:	7a5f 6d6d 6c75      	.byte	0x5f, 0x7a, 0x6d, 0x6d, 0x75, 0x6c
   34:	7031                	.2byte	0x7031

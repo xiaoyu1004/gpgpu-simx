@@ -153,8 +153,8 @@ int run_kernel_test(const kernel_arg_t& kernel_arg, uint32_t buf_size, uint32_t 
         // for (uint32_t i = 0; i < num_points; ++i) {
         //     buf_ptr[i] = i;
         // }
-        RandInit(buf_ptr, num_points);
-        memcpy(h_ref, buf_ptr, num_points * sizeof(int32_t));
+        RandInit(h_ref, num_points);
+        memcpy(buf_ptr, h_ref, num_points * sizeof(int32_t));
     }
     std::cout << "upload source buffer" << std::endl;
     auto t0 = std::chrono::high_resolution_clock::now();
